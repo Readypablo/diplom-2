@@ -1,4 +1,3 @@
-<?php   session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +17,6 @@
 </head>
 <body>
 
-<div class="preloader">
-  <div class="preloader__row">
-    <div class="preloader__item"></div>
-    <div class="preloader__item"></div>
-  </div>
-</div>
-<script src="js/preloader.js"></script>
   <header>
       <div class="header-block-link">
         <img src="img/logo.svg" class="logo-header">
@@ -113,62 +105,45 @@
 
 
   </div>
-  <div class="spase" id="geo"></div>
 
-  <div class="margin-left" >
-              <p class="zagolovok">Новости клуба</p>
-              </div>
-
-      <div class="row-news">
-            <div class="cont-news">
   <?php 
-           
-
-
-
             include("pages/bd_connect/db.php");
             $sql4 = "SELECT * FROM `news` ORDER BY id DESC";
             $resultt = $con->query($sql4);
+       
 
             for($dataa = []; $row = mysqli_fetch_assoc($resultt); $dataa[]=$row)
-            { }
-         
+            {
+
+            }
             foreach($dataa as $elemm)  {
-         
-                        echo '
-                                          <div class="card-news">
+
+
+                  echo '
+                  <div class="spase"></div>
+
+                  <div class="news">
                       
-                                                <p class="name-news" >'.$elemm['name'].'</p>    
-                                                <a href="pages/news.php?id='.$elemm['id'].'">        
-                                                <input type="submit" name="textvalue" value="Смотреть" class="button-news">
-                                                </a>
-                                                <img src="img/news/'.$elemm['img'].'" class="img-news">
-                                             
-                                          </div> ';
-                                       
+                                    <p class="zag-news">'.$elemm['name'].'</p>
+                                    <p class="txt-news">'.$elemm['text'].'</p>
+                  </div>';
             }
 
+
 ?>
-          
-          </div>
-      </div>
+
+
+  <!-- <div class="spase"></div>
+
+            <div class="news">
+                
+                              <p class="zag-news">Новости</p>
+                       
+                              <p class="txt-news">text</p>
+            </div> -->
 
 
 
-
-
-<!-- 
-     <div class="row-news">
-            <div class="cont-news">
-                        <div class="card-news">
-                              <p class="name-news">Cупер хоккей</p>
-                              <button class="button-news">Смотреть</button>
-                              <img src="img/news/1.jpeg" class="img-news">
-                        </div>
-                        
-                      
-            </div>
-      </div> -->
 
 
   <div class="spase" id="geo"></div>

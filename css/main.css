@@ -25,6 +25,83 @@ header{
 box-shadow: 0 0 30px 1px black ;
 
 }
+
+/* preloader */
+
+.preloader {
+  /*фиксированное позиционирование*/
+  position: fixed;
+  /* координаты положения */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* фоновый цвет элемента */
+  background: #e0e0e0;
+  /* размещаем блок над всеми элементами на странице (это значение должно быть больше, чем у любого другого позиционированного элемента на странице) */
+  z-index: 1001;
+}
+
+.preloader__row {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+.preloader__item {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  background-color: #337ab7;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  animation: preloader-bounce 2s infinite ease-in-out;
+}
+
+.preloader__item:last-child {
+  top: auto;
+  bottom: 0;
+  animation-delay: -1s;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes preloader-bounce {
+
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loaded_hiding .preloader {
+  transition: 0.3s opacity;
+  opacity: 0;
+}
+
+.loaded .preloader {
+  display: none;
+}
+
+
+
+/* preloader */
+
 .mob-hed{
 display: none;
 }
@@ -95,7 +172,7 @@ display: none;
 
 .header-block-link{
   position: fixed;
-  z-index: 1000;
+  z-index: 10000;
   height: auto;
   width: 100%;
   background: rgb(14, 50, 124);
@@ -244,6 +321,116 @@ td{
   text-align: left;
 }
 
+.row-news{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.cont-news{
+  width: 80%;
+ 
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.card-news{
+
+  margin: 1px;
+  width: 350px;
+  height: 200px;
+  border-radius: 10px;
+  position: relative;
+}
+.img-news{
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  filter: brightness(40%);
+}
+
+
+
+.name-news{
+width: 100%;
+margin-top: 50px;
+z-index: 900;
+  position:absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  font-family: "Grotesk Semibold-free", sans-serif;
+  line-height: 30px;
+  letter-spacing: 0.02em;
+}
+.button-news{
+  width: 150px;
+  height: 40px;
+  z-index: 100;
+  color: white;
+  border: none;
+  margin-top: 130px;
+  margin-left: 105px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 17px;
+  font-family: "Grotesk Semibold-free", sans-serif;
+  line-height: 30px;
+  letter-spacing: 0.02em;
+  border-radius: 5px;
+  background: #114dc6;
+  transition: all 0.2s ease-in;
+}
+.button-news:hover{
+  transform: scale(1.1);
+}
+
+.margin-left{
+  width: 100%;
+
+  text-align: left;
+}
+.margin-left > .zagolovok{
+  margin-left: 150px;
+}
+
+.post-news{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+.img-block-news-post{
+  width: 40%;
+  height: auto;
+}
+.img-news-post{
+  width: 100%;
+  height: auto;
+}
+
+.block-txt-news-post{
+  width: 60%;
+  margin-left: 40px;
+}
+.zagt-news-post{
+text-align: left;
+  height: auto;
+
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  font-family: "Grotesk Semibold-free", sans-serif;
+  line-height: 30px;
+  letter-spacing: 0.02em;
+}
+.text-news-post{
+  font-size: 16px;
+  text-align: left;
+  margin-top: 20px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+}
 
 
 
@@ -957,11 +1144,24 @@ font-size: 15px;
 /* admin_panel */
 
 
+
+.form-admin{
+  width: 90%;
+  background: gray;
+  max-height: 500px; /* Высота контейнера */
+  overflow-y: scroll;
+  text-align: center;
+}
+.form-admin >h2{
+  color: white;
+}
+
 .form-changes{
-  width: 500px;
+  width: 300px;
   justify-content: left;
   text-align: left;
   margin-left: 100px;
+
 }
 
 
@@ -988,13 +1188,27 @@ font-size: 15px;
 
 .btn-chang{
   width: 150px;
-  height: 30px;
+  height: 40px;
+  margin-top: 20px;
   font-size: 20px;
   cursor: pointer;
+  transition: all 0.2s ease-in;
+  background:  rgb(49, 79, 201);
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
+.btn-chang:hover{
+  transform: scale(1.1);
+}
+
 .table-adm{
+  width: 100%;
   border-collapse: collapse;
   border: 2px solid grey;
+  background: white;
 }
 th {
   border: 1px solid grey;

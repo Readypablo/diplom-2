@@ -16,7 +16,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
 </head>
 
-
+<div class="preloader">
+  <div class="preloader__row">
+    <div class="preloader__item"></div>
+    <div class="preloader__item"></div>
+  </div>
+</div>
+<script src="../js/preloader.js"></script>
 
       <div class="header-block-link">
         <img src="../img/logo.svg" class="logo-header">

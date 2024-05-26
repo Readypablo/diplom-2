@@ -8,51 +8,38 @@ include("header.php");
 <body>
     <main>
 
-        
-<form method="POST" >
-<h2>Панель  новостей</h2>
-     <table class="table-adm">
-     
-     <th>id</th>
-     <th>название </th>
-     <th>текст</th>
-   
+<div class="row-news">
+    <form method="POST" class="form-admin" >
+    <h2>Панель  новостей</h2>
+        <table class="table-adm">
+        <th>id</th>
+        <th>название </th>
+        <th>текст</th>
+        <th>изображение</th>
+        <?php 
+            $query= "SELECT * FROM `news` ";
+            $result = mysqli_query($con, $query) or die;
+            
+            for($data = []; $row = mysqli_fetch_assoc($result); $data[]=$row)
+            $i++;
+            ;
+            foreach($data as $elem){
+                echo "<tr>";
+                echo "<td>".$elem['id']."</td>";
+                echo "<td>".$elem['name']."</td>";
+                echo "<td>".$elem['text']."</td>";
+                echo "<td>".$elem['img']."</td>";
+                echo "</tr>";
+            }
+        ?>
+        </table>
+    </form>
+</div>
 
-     <?php 
-        
-         $query= "SELECT * FROM `news` ";
-         $result = mysqli_query($con, $query) or die;
-         
-         for($data = []; $row = mysqli_fetch_assoc($result); $data[]=$row)
-         $i++;
-         ;
-         
-         foreach($data as $elem){
-         
-             echo "<tr>";
-             echo "<td>".$elem['id']."</td>";
-             echo "<td>".$elem['name']."</td>";
-             echo "<td>".$elem['text']."</td>";
-  
-        
-             echo "</tr>";
-         }
-         
-     
-        
-     
-     
-     
-     ?>
-     
-     
-     
-     </table></form>
-    
+
      <div class="flex-news">
 
      <div class="spase"></div>
-
 
     <div class="block-changes">
     <h2>Панель изменения новостей</h2>
@@ -63,13 +50,15 @@ include("header.php");
             <input type="text" class="inp-chang" name="name" required>
             <h3 class="name-card">Текст новости</h3>
             <textarea  class="inp-chang" name="txt" required></textarea>
+            <h3 class="name-card">название изображения</h3>
+            <input type="text" class="inp-chang" name="img" required>
             <br>
-            <input type="submit" value="изменить" class="btn-chang" name="send">
+            <input type="submit" value="изменить" class="btn-chang" name="sendb">
         </form>
     </div>
 <div class="spase"></div>
 <?php 
-if(isset($_POST['send'])) {
+if(isset($_POST['sendb'])) {
     $sql2 = 'SELECT * from news ';
   
     $name = stripslashes($_REQUEST['name']);    
@@ -78,15 +67,19 @@ if(isset($_POST['send'])) {
     $txt = stripslashes($_REQUEST['txt']);    
     $txt = mysqli_real_escape_string($con, $txt);
 
+    $img = stripslashes($_REQUEST['img']);    
+    $img = mysqli_real_escape_string($con, $img);
+
     $id = stripslashes($_REQUEST['id']);    
     $id = mysqli_real_escape_string($con, $id);
-        $query = "UPDATE news SET name='$name',text='$txt' WHERE id='$id'";
+
+        $query = "UPDATE news SET name='$name',text='$txt' ,img='$img' WHERE id='$id'";
    
         $ult = mysqli_query($con, $query);
         // чекаем все поля все ли хорошо там
         if($ult){
             echo "<div class='form'>
-            <h3>изменили товар</h3><br/>
+            <h3>изменили </h3><br/>
             </div>"; 
         }else{
             echo "<div class='form'>
@@ -113,6 +106,8 @@ if(isset($_POST['send'])) {
         <input type="text" class="inp-chang" name="name" required>
         <h3 class="name-card">Текст новости</h3>
         <textarea  class="inp-chang" name="txt" required></textarea>
+        <h3 class="name-card">название изображения</h3>
+        <input type="text" class="inp-chang" name="img" required>
         <br>
         <input type="submit" value="Добавить" class="btn-chang" name="send">
     </form>
@@ -133,9 +128,12 @@ if(isset($_POST['send'])) {
     $txt = stripslashes($_REQUEST['txt']);    
     $txt = mysqli_real_escape_string($con, $txt);
 
+    $img = stripslashes($_REQUEST['img']);    
+    $img = mysqli_real_escape_string($con, $img);
+
     $id = stripslashes($_REQUEST['id']);    
     $id = mysqli_real_escape_string($con, $id);
-    $query = "INSERT into `news` (name, text) VALUES ('$name', '$txt' )";
+    $query = "INSERT into `news` (name, text , img) VALUES ('$name', '$txt' ,'$img' )";
         $ult = mysqli_query($con, $query);
         // чекаем все поля все ли хорошо там
         if($ult){
@@ -160,10 +158,10 @@ if(isset($_POST['send'])) {
 
 
 
-         
-         <form method="POST" >
+         <div class="row-news">
+         <form method="POST" class="form-admin" >
          <h2>Панель  матчей</h2>
-              <table  class="table-adm">
+         <table  class="table-adm">
               
               <th>id</th>
               <th>дата </th>
@@ -205,7 +203,9 @@ if(isset($_POST['send'])) {
               
          
               
-              </table></form>
+              </table>
+            </form>
+        </div>
 
 
 <div class="flex-news">
@@ -241,7 +241,7 @@ if(isset($_POST['send'])) {
                 </form>
         </div>
 
-<div class="spase"></div>
+
 
 <?php 
 if(isset($_POST['sendi'])) {
@@ -327,7 +327,7 @@ if(isset($_POST['sendi'])) {
                 <h3 class="name-card">2 город</h3>
                 <input type="text" class="inp-chang" name="lcity" required>
                 <br>
-                <input type="submit" value="изменить" class="btn-chang" name="sendil">
+                <input type="submit" value="Добавить" class="btn-chang" name="sendil">
                 </form>
         </div>
  </div>

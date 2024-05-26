@@ -47,4 +47,15 @@ function loadLog(){
 
     
 
+
+	$('#submitmsg').on('click', function(e){
+		e.preventDefault();
+		
+		var val = $('#usermsg').val();
+		
+		if(val.length >= 1){
+		  $('#usermsg').val('');
+		}
+	  });
+
     setInterval (loadLog, 100);
